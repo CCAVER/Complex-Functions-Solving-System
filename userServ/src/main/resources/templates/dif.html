@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+[[${wrong}]]
+<f id="form0">
+  <div id="li">
+    <form action="tofix" method="post" id="form">
+      <msg name="uid" hidden="hidden" id="uid0">[[${uid}]]</msg>
+      <p>f(x)=<input type="text" id="mathm" name="mathm" value="" />
+        <input type="button" value="生成表达式" onclick="lat()" />
+      </p>
+      <p><td colspan="2">
+      <input type="button" value="求导" onclick="diff()"/>
+      <input type="reset" value="重填" />
+    </td></p>
+
+    </form>
+    <form action="py" method="post">
+      <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+      <p><input type="submit" value="返回"></p>
+    </form>
+  </div>
+</f>
+<p>
+  表达式 <b>如下所示</b>.
+</p>
+<p>
+  <img id="ImagePic" alt="Base64 encoded image" />
+</p>
+<p>
+  导函数 <dv id="dv"></dv><b>如下所示</b>.
+</p>
+<p>
+  <img id="ImageDif" alt="Base64 encoded image" />
+</p>
+<p>
+<table border="1" id="tab">
+</table>
+</p>
+<style>
+  #form0 {
+    display: block;
+    background-color:beige;
+    position:relative;
+    float: left;
+    height: 1024px;
+    width: 200px;
+    border-right:2px black double;
+  }
+  #li{
+    display: block;
+    position:relative;
+    float: left;
+  }
+  #img {
+    display: block;
+    position:absolute;
+    float: left;
+    left: 250px;
+  }
+
+</style>
+<SCRIPT>
+  function lat(){
+    var uid0=document.getElementById("uid0").innerHTML;
+    var matha0=document.getElementById("mathm").value;
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"matha":matha0},
+      url : "/latex",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        $("#ImagePic").attr("src","data:image/png;base64,"+data["img"]);
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
+  function diff(){
+    var uid0=document.getElementById("uid0").innerHTML;
+    var matha0=document.getElementById("mathm").value;
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"matha":matha0},
+      url : "/diff",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        $("#ImageDif").attr("src","data:image/png;base64,"+data["img"]);
+        list();
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
+  function list() {
+    document.getElementById("tab").innerHTML="";
+    $.ajax({
+      type : "POST",//请求方式
+      contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      url : "/diffwork",//请求地址
+      async: false,//同步传输
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        for(var key in data){   //key    data[key]
+          //console.log(key + "==" + data[key][0]);
+          item="<tr><td>\n" +
+                  "        <form action=\"read\" method=\"post\" id=\""+key+"\">\n" +
+                  "            id:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                  "            f(x):"+data[key][0]+"             diff(x):"+data[key][1]+"\n" +
+                  "            <input type=\"button\" value=\"查看\" onclick=read(\""+key+"\") />\n" +
+                  "            <input type=\"button\" onclick=doDel(\""+key+"\") value=\"删除\" />\n"+
+                  "        </form>\n" +
+                  "    </td></tr>";
+          $('#tab').append(item);
+        }
+      },
+      error : function(e){//请求失败，包含具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+      }
+    });
+  }
+  function read(rowid){
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"rowid":rowid},
+      url : "/diffRead",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        $("#ImageDif").attr("src","data:image/png;base64,"+data["img"]);
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
+  function doDel(rowid){
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"rowid":rowid},
+      url : "/diffdel",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        //$("#ImageDif").attr("src","data:image/png;base64,"+data["img"]);
+        list();
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
+  window.onload=list();
+</SCRIPT>
+</body>
+</html>

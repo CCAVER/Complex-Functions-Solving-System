@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+[[${wrong}]]
+<form action="show" method="post" id="form">
+<msg name="uid" hidden="hidden">[[${uid}]]</msg>
+    <div id="li">
+        <input type="button" onclick="godif()" value="求导" />
+        <input type="button" onclick="golim()" value="求极限" />
+        <input type="button" onclick="gosol()" value="求解" />
+<p>函数名:<input type="text" name="fname" value="1"/></p>
+        <p>f(x)=<input type="text" name="mathm" value="cos(x)"/></p>
+        <p>x > <input type="text" name="mini" value="-10"></p>
+        <p>x < <input type="text" name="maxi" value="10"></p>
+        <p>制表长:<input type="text" name="lent" value="10"></p>
+        <p>制表高:<input type="text" name="hei" value="10"></p>
+        <p>线条质量:<input type="text" name="quality" value="0.001"></p>
+
+
+    <p><td colspan="2">
+        <input type="submit" value="提交" />
+        <input type="reset" value="重填" />
+
+    </td></p>
+        <p><a href="/logout">退出登录</a></p>
+    </div>
+</form>
+<table border="1" id="tab">
+</table>
+<style>
+    #form {
+        display: block;
+        background-color:beige;
+        position:relative;
+        float: left;
+        height: 1024px;
+        width: 200px;
+        border-right:2px black double;
+    }
+    #li{
+        display: block;
+        position:relative;
+        float: left;
+    }
+    #tab {
+        display: block;
+        position:absolute;
+        float: left;
+        left: 240px;
+    }
+
+</style>
+<SCRIPT>
+
+    window.onload=list();
+
+    function list() {
+        $.ajax({
+            type : "POST",//请求方式
+            contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            url : "/mywork",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "        <form action=\"read\" method=\"post\" id=\""+key+"\">\n" +
+                        "            id:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                        "            函数名:"+data[key][0]+" 函数"+data[key][1]+"\n" +
+                        "            <input type=\"submit\" value=\"查看\" />\n" +
+                        "            <input type=\"button\" onclick=doDel(\""+key+"\") value=\"删除\" />\n"+
+                        "        </form>\n" +
+                        "    </td></tr>";
+                    $('#tab').append(item);
+                }
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+
+    function doDel(dId){
+
+        document.getElementById(dId).action="doDel";
+        document.getElementById(dId).submit();
+
+    }
+    function golim(){
+        document.getElementById("form").action="goLim";
+        document.getElementById("form").submit();
+    }
+    function gosol(){
+        document.getElementById("form").action="goSol";
+        document.getElementById("form").submit();
+    }
+    function godif(){
+        document.getElementById("form").action="goDif";
+        document.getElementById("form").submit();
+    }
+</SCRIPT>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+[[${wrong}]]
+<f id="form0">
+<div id="li">
+<form action="tofix" method="post" id="form">
+  <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+  <p>函数名:<input type="text" id="fname" name="fname" value="" /></p>
+    <p>f(x)=<input type="text" id="mathm" name="mathm" value="" /></p>
+    <p>x > <input type="text" id="mini" name="mini" value="" /></p>
+    <p>x < <input type="text" id="maxi" name="maxi" value="" /></p>
+    <p>制表长:<input type="text" id="lent" name="lent" value="" /></p>
+    <p>制表高:<input type="text" id="hei" name="hei" value="" /></p>
+    <p>线条质量:<input type="text" id="quality" name="quality" value="" /></p>
+    <p><td colspan="2">
+    <input type="submit" value="提交" />
+    <input type="reset" value="重填" />
+  </td></p>
+
+</form>
+<form action="py" method="post">
+  <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+  <p><input type="submit" value="返回"></p>
+</form>
+</div>
+</f>
+<p>
+  函数图像 <b>如下所示</b>.
+</p>
+<p>
+  <img th:src="@{/image/${image_name}}" id="img"/>
+</p>
+<p>
+
+</p>
+<style>
+  #form0 {
+    display: block;
+    background-color:beige;
+    position:relative;
+    float: left;
+    height: 1024px;
+    width: 200px;
+    border-right:2px black double;
+  }
+  #li{
+    display: block;
+    position:relative;
+    float: left;
+  }
+  #img {
+    display: block;
+    position:absolute;
+    float: left;
+    left: 250px;
+  }
+
+</style>
+<SCRIPT>
+  window.onload=function (){
+    $.ajax({
+      type : "POST",//请求方式
+      contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      url : "/nowInf",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function(result) {//请求成功
+        //console.log(result['1'][0]);标准格式
+        var data = result;
+        $('#fname').val(data["fname"]);
+        $('#quality').val(data["quality"]);
+        $('#uid').val(data["uid"]);
+        $('#mathm').val(data["mathm"]);
+        $('#lent').val(data["lent"]);
+        $('#hei').val(data["hei"]);
+        $('#maxi').val(data["maxi"]);
+        $('#mini').val(data["mini"]);
+      },
+      error : function(e){//请求失败，包含具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+      }
+    });
+  }
+</SCRIPT>
+</body>
+</html>

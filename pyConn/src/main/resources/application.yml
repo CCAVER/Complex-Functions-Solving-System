@@ -1,0 +1,30 @@
+eureka:
+  client:
+    serviceUrl:
+      #服务注册地址
+      defaultZone: http://localhost:8888/eureka/
+server:
+  #运行端口
+  port: 8763
+spring:
+  application:
+    #服务注册名称
+    name: pyConn
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  datasource:
+    url: jdbc:mysql://localhost:3306/finalwork?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mongodb:
+  url: mongodb://localhost:27017/
+  database:
+    test: test
+    test1: test1
+ribbon:
+  OkToRetryOnAllOperations: false # 对所有操作请求都进行重试,默认false
+  ReadTimeout: 10000   # 负载均衡超时时间，默认值5000
+  ConnectTimeout: 10000 # ribbon请求连接的超时时间，默认值2000
+  MaxAutoRetries: 0     # 对当前实例的重试次数，默认0
+  MaxAutoRetriesNextServer: 1 # 对切换实例的重试次数，默认1

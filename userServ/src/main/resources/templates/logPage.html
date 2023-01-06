@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+[[${wrong}]]
+<form action="docheckA" method="post" id="lab">
+    <table id="tab">
+        <tr align="center">
+            <td colspan="2">用户登录</td>
+        </tr>
+        <tr>
+            <td>用户名：</td><td><input type="text" name="username" id="username"/></td>
+        </tr>
+        <tr>
+            <td>密码：</td><td><input type="password" name="password" id="password"/></td>
+        </tr>
+        <tr align="center">
+            <td colspan="2">
+                <input type="submit" value="登录" />
+                <input type="reset" value="重填" />
+                <input type="button" value="注册" onclick=reg() >
+            </td>
+        </tr>
+    </table>
+</form>
+<style>
+    #lab {
+        display: block;
+        background-color:beige;
+        position: center;
+    }
+    #tab{
+        display: block;
+        position:relative;
+        left: 40%;
+    }
+</style>
+<SCRIPT>
+    function reg(){
+        document.getElementById("lab").action="reg"
+        document.getElementById("lab").submit();
+    }
+</SCRIPT>
+</body>
+</html>

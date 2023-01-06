@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+[[${wrong}]]
+<form action="doreg" method="post" id="lab">
+    <table id="tab">
+        <tr align="center">
+            <td colspan="2">用户登录</td>
+        </tr>
+        <tr>
+            <td>用户名：</td><td><input type="text" name="username" /></td>
+        </tr>
+        <tr>
+            <td>密码：</td><td><input type="password" name="password" id="pas"/></td>
+
+        </tr>
+        <tr>
+            <td>确认密码：</td><td><input type="password" id="confirm" /></td>
+        </tr>
+        <tr align="center">
+            <td colspan="2">
+                <input type="button" value="注册" onclick=reg() >
+                <input type="reset" value="重填" />
+            </td>
+        </tr>
+    </table>
+</form>
+<style>
+    #lab {
+        display: block;
+        background-color:beige;
+        position: center;
+    }
+    #tab{
+        display: block;
+        position:relative;
+        left: 40%;
+    }
+</style>
+<SCRIPT>
+    function reg(){
+        if(document.getElementById("pas").value==document.getElementById("confirm").value){document.getElementById("lab").submit();}
+        else {alert("密码不一致");}
+    }
+</SCRIPT>
+</body>
+</html>

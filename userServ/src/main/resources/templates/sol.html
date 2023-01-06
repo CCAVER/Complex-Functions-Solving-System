@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+[[${wrong}]]
+<f id="form0">
+    <div id="li">
+        <form action="tofix" method="post" id="form">
+            <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+            <p>f(x)<input type="text" id="mathm0" name="mathm" value="" />
+                <input type="button" value="表达式预览" onclick="innerLat()" /></p>
+            <p>一般求解:<input type="text" id="mathm" name="mathm" value="x-1" />=0</p>
+            <p>常微方程:<input type="text" id="dmathm" name="mathm" value="diff(f(x),x,2)+2*diff(f(x),x,1)+3*f(x),0" /></p>
+            <p>函数标识符<input type="text" id="f" name="f" value="f" /></p>
+            <p>未知数<input type="text" id="sym" name="sym" value="x" /></p>
+            <p><td colspan="2">
+            <input type="button" value="一般求解" onclick="sol('c')" />
+            <input type="button" value="常微方程" onclick="dSol('d')" />
+        </td></p>
+
+        </form>
+        <form action="py" method="post">
+            <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+            <p><input type="submit" value="返回"></p>
+        </form>
+    </div>
+</f>
+<p>
+    表达式 <b>如下所示</b>.
+</p>
+<p>
+    <img id="ImagePic" alt="Base64 encoded image" />
+</p>
+<table border="1" id="tab">
+</table>
+历史记录:
+<table border="1" id="tablist">
+</table>
+<style>
+    #form0 {
+        display: block;
+        background-color:beige;
+        position:relative;
+        float: left;
+        height: 1024px;
+        width: 200px;
+        border-right:2px black double;
+    }
+    #li{
+        display: block;
+        position:relative;
+        float: left;
+    }
+    #img {
+        display: block;
+        position:absolute;
+        float: left;
+        left: 250px;
+    }
+
+</style>
+<SCRIPT>
+    function dSol(type){
+        document.getElementById("tab").innerHTML="";
+        var matha0=document.getElementById("dmathm").value;
+        var sym=document.getElementById("sym").value;
+        var f=document.getElementById("f").value;
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {"matha":matha0,"sym":sym,"f":f,"type":type},
+            url : "/doSol",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "            id:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                        "            结果:"+data[key][2]+" = "+data[key][4]+"\n" +
+                        "    </td></tr>";
+                    $('#tab').append(item);
+                    list();
+                }
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+                alert(e.status+e.responseText);
+            }
+        });
+    }
+    function innerLat(){
+        var matha0=document.getElementById("mathm0").value;
+        lat(matha0);
+    }
+    function lat(matha0){
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {"matha":matha0},
+            url : "/latex",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                $("#ImagePic").attr("src","data:image/png;base64,"+data["img"]);
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+                alert(e.status+e.responseText);
+            }
+        });
+    }
+    function sol(type){
+        document.getElementById("tab").innerHTML="";
+        var matha0=document.getElementById("mathm").value;
+        var sym=document.getElementById("sym").value;
+        var f=document.getElementById("f").value;
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {"matha":matha0,"sym":sym,"f":f,"type":type},
+            url : "/doSol",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "            id:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                        "            结果:"+data[key][2]+" = "+data[key][4]+"\n" +
+                        "    </td></tr>";
+                    $('#tab').append(item);
+                    list();
+                }
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+                alert(e.status+e.responseText);
+            }
+        });
+    }
+    function list(){
+        document.getElementById("tablist").innerHTML="";
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {},
+            url : "/solList",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "        <form action=\"read\" method=\"post\" id=\""+key+"\">\n" +
+                        "            id:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                        "            结果:"+data[key][2]+" = "+data[key][4]+"\n" +
+                        "            <input type=\"button\" onclick=doDel(\""+key+"\") value=\"删除\" />\n"+
+                        "        </form>\n" +
+                        "    </td></tr>";
+                    $('#tablist').append(item);
+                }
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    function doDel(rowid){
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {"rowid":rowid},
+            url : "/soldel",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                //$("#ImageDif").attr("src","data:image/png;base64,"+data["img"]);
+                list();
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+                alert(e.status+e.responseText);
+            }
+        });
+    }
+    window.onload=list();
+</SCRIPT>
+</body>
+</html>

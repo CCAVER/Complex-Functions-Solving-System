@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="PythonWork" />
+        <module name="FINALWORK7_CLOUD" />
+        <module name="springcloud_demo" />
+        <module name="FINALWORK5_CLOUD - 副本" />
+        <module name="FINALWORK5_CLOUDs" />
+        <module name="userServ" />
+        <module name="eureka-server" />
+        <module name="pyConn" />
+        <module name="FINALWORK5_CLOUD" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PythonWork" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="pyConn" options="-parameters" />
+      <module name="userServ" options="-parameters" />
+    </option>
+  </component>
+</project>

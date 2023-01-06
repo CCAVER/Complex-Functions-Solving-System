@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="172d1575-f395-4d39-832a-9b799b121d31" name="Default Changelist" comment="Solving System" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1106a1d9-374c-4536-ba95-d0221c63c29d" />
+        <option name="url" value="https://github.com/CCAVER/Complex-function-Solving-System.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../apache-maven-3.6.3" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ghsTFsTefQa89XKXLXPT2nkQsT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "corretto-1.8 (2)",
+    "last_opened_file_path": "D:/学习系列/毕业论文-定档/GraDes",
+    "list.type.of.created.stylesheet": "CSS",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.56436783",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "spring.configuration.checksum": "1e2f3949a28255adba326eb5c65396ed"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IDEA\FINALWORK8_CLOUD" />
+      <recent name="D:\IDEA\FINALWORK7_CLOUD\PythonWork\src\main\java\com\example\finalwork4\domain" />
+      <recent name="D:\IDEA\FINALWORK7_CLOUD\userServ\src\main\java\com\example\userServ\domain" />
+      <recent name="D:\IDEA\FINALWORK5_CLOUDs\common" />
+      <recent name="D:\IDEA\FINALWORK5_CLOUD - 副本\userServ\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.pyConn.config" />
+      <recent name="com.example.pyConn.service.impl" />
+      <recent name="com.example.pyConn.dao" />
+      <recent name="com.example.finalwork4.config" />
+      <recent name="com.example.userServ.domain" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ProviderApplication">
+    <configuration name="ConsumerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="userServ" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.userServ.ConsumerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Finalwork3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="PythonWork" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.finalwork4.Finalwork3Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="pyConn" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.pyConn.pyConnApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ConsumerApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.Finalwork3Application" />
+      <item itemvalue="Spring Boot.ProviderApplication" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.19057377" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\CCAVE\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="172d1575-f395-4d39-832a-9b799b121d31" name="Default Changelist" comment="" />
+      <created>1598578164710</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598578164710</updated>
+      <workItem from="1598578168127" duration="8223000" />
+      <workItem from="1599786375776" duration="611000" />
+      <workItem from="1652857357052" duration="4123000" />
+      <workItem from="1652863605541" duration="142000" />
+      <workItem from="1652863874119" duration="2382000" />
+      <workItem from="1652866292635" duration="11079000" />
+      <workItem from="1652883170982" duration="94000" />
+      <workItem from="1652883298929" duration="4789000" />
+      <workItem from="1652920438345" duration="17253000" />
+      <workItem from="1652950389474" duration="10358000" />
+      <workItem from="1652963005033" duration="8435000" />
+      <workItem from="1653474028633" duration="1418000" />
+      <workItem from="1653476043481" duration="600000" />
+      <workItem from="1653477747336" duration="10169000" />
+      <workItem from="1653541821261" duration="7291000" />
+      <workItem from="1653724378699" duration="878000" />
+      <workItem from="1653792157600" duration="23468000" />
+      <workItem from="1653888417245" duration="6164000" />
+      <workItem from="1653898159177" duration="16433000" />
+      <workItem from="1653959096451" duration="10951000" />
+      <workItem from="1654491612549" duration="408000" />
+      <workItem from="1654492143606" duration="2558000" />
+      <workItem from="1654583327269" duration="5356000" />
+      <workItem from="1655079200168" duration="2952000" />
+      <workItem from="1656902220202" duration="703000" />
+      <workItem from="1662979972787" duration="3393000" />
+      <workItem from="1662992958312" duration="776000" />
+      <workItem from="1663243099898" duration="660000" />
+      <workItem from="1663247537027" duration="67000" />
+      <workItem from="1663248003758" duration="387000" />
+      <workItem from="1663250140886" duration="608000" />
+      <workItem from="1663571369053" duration="23000" />
+      <workItem from="1663571581044" duration="2091000" />
+      <workItem from="1664175380122" duration="2215000" />
+      <workItem from="1664255003058" duration="8604000" />
+      <workItem from="1664266212108" duration="1070000" />
+      <workItem from="1664352941793" duration="5176000" />
+      <workItem from="1664363423042" duration="858000" />
+      <workItem from="1664364806604" duration="1405000" />
+      <workItem from="1664416155564" duration="407000" />
+      <workItem from="1664417580476" duration="1186000" />
+      <workItem from="1664429742985" duration="343000" />
+      <workItem from="1664430275148" duration="3608000" />
+      <workItem from="1664434051248" duration="1671000" />
+      <workItem from="1664436404527" duration="4709000" />
+      <workItem from="1664442844497" duration="972000" />
+      <workItem from="1664444750670" duration="751000" />
+      <workItem from="1664534192560" duration="2600000" />
+      <workItem from="1664536989955" duration="8067000" />
+      <workItem from="1664550626519" duration="303000" />
+      <workItem from="1664631067670" duration="4487000" />
+      <workItem from="1664699874964" duration="1364000" />
+      <workItem from="1664710736684" duration="7558000" />
+      <workItem from="1664763825463" duration="131000" />
+      <workItem from="1664773674126" duration="3750000" />
+      <workItem from="1664876023218" duration="689000" />
+      <workItem from="1665974456453" duration="593000" />
+      <workItem from="1665975662488" duration="2732000" />
+      <workItem from="1666681212178" duration="5368000" />
+      <workItem from="1666751615714" duration="1323000" />
+      <workItem from="1666844202272" duration="3328000" />
+      <workItem from="1666929670484" duration="669000" />
+      <workItem from="1672911338246" duration="28000" />
+      <workItem from="1672912482610" duration="4805000" />
+      <workItem from="1672924480558" duration="698000" />
+      <workItem from="1672972532767" duration="15192000" />
+      <workItem from="1672993669704" duration="54000" />
+    </task>
+    <task id="LOCAL-00001" summary="python 程序">
+      <created>1665977209051</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665977209052</updated>
+    </task>
+    <task id="LOCAL-00002" summary="python 程序">
+      <created>1666687207215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666687207215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="python 程序">
+      <created>1672991749753</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672991749754</updated>
+    </task>
+    <task id="LOCAL-00004" summary="python 程序">
+      <created>1672992202329</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672992202329</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Solving System">
+      <created>1672993446950</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672993446950</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="python 程序" />
+    <MESSAGE value="Solving System" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solving System" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
