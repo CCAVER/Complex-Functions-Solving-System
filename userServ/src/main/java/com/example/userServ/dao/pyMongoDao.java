@@ -9,6 +9,7 @@ public interface pyMongoDao {
 
     void del(int id);
 
+    void clean(String uid);
     List<MongoPyDetail> findDemoByUId(String uid);
 
 

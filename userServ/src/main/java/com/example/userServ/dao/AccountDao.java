@@ -82,4 +82,6 @@ public interface AccountDao {
     List<Sol> getAllSol(@Param("uid") String uid);
     @Delete("delete from res where id=${id}")
     void SOLDel(@Param("id") String id);
+    @Delete("delete from user where uid=${uid}")
+    void userDel(@Param("uid") String uid);
 }

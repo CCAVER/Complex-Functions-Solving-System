@@ -45,15 +45,16 @@ public class checker {
 //            request.setAttribute("wrong","用户不存在");
 //            return "reg";}
 //    }
+    public static final String PATH0 = "/dD:\\学习系列\\毕业论文-定档\\";
     @RequestMapping("doreg")
     public String reg(String username,String password,HttpServletRequest request,HttpSession session){
         if(username!=""&&username!=null&&password!=""&&password!=null){
             try {
                 String command="";
-                String fname0=mySecure.add(username,password);
-                final String PATH = "C:\\Users\\hy\\Desktop\\论文相关";//脚本位置
+                String fname0=mySecure.add(username,password);//获取UID
+                //final String PATH = "C:\\Users\\hy\\Desktop\\论文相关";//脚本位置
                 command= "cmd.exe /c cd "
-                        + PATH //此处插入创建文件夹路径
+                        + PATH0 //此处插入创建文件夹路径
                         + " && mkdir "+fname0
                         +" && Xcopy 0 "+fname0
                         +" /E/H/C/I";

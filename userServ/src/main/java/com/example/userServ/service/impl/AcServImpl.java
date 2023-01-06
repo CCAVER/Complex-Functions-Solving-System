@@ -3,13 +3,20 @@ package com.example.userServ.service.impl;
 import com.example.finalwork4.domain.Sol;
 import com.example.finalwork4.domain.lim;
 import com.example.finalwork4.domain.pyInf;
+import com.example.userServ.controller.checker;
 import com.example.userServ.dao.AccountDao;
+import com.example.userServ.dao.pyMongoDao;
 import com.example.userServ.domain.account;
 import com.example.userServ.domain.diff;
 import com.example.userServ.domain.pyDetail;
 import com.example.userServ.service.AcServ;
 import com.sun.glass.ui.View;
+import org.aspectj.weaver.Checker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,10 +25,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("AcServ")
 public class AcServImpl implements AcServ {
@@ -31,6 +37,12 @@ public class AcServImpl implements AcServ {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    pyMongoDao pd;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private StringRedisTemplate srt;
 
     @Override
     public List<account> show() {
@@ -118,4 +130,32 @@ public class AcServImpl implements AcServ {
     public void SOLDel(String id) {
         accountDao.SOLDel(id);
     }
+
+    @Override
+    public void delUser(String uid) {
+        pd.clean(uid);//删除mongoDB
+        byte[] finalUid = uid.getBytes(StandardCharsets.UTF_8);
+        //redisTemplate.delete(finalUid);
+        srt.delete(uid);//删除redis
+        System.out.println("要删除的UID是:"+uid+" key:"+finalUid);
+        accountDao.userDel(uid);//删除mysql
+        //rmdir 19 /s/q   删除文件夹
+        String PATH= checker.PATH0;
+        try {
+            String command="";
+            //final String PATH = "C:\\Users\\hy\\Desktop\\论文相关";//脚本位置
+            command= "cmd.exe /c cd "
+                    + PATH //此处插入创建文件夹路径
+                    + " && rmdir "+uid
+                    +" /s/q";
+            //Xcopy C:\ test D:\test /E/H/C/I
+            //cd C:\Users\hy\Desktop\论文相关 && mkdir 20 && Xcopy 0 20 /E/H/C/I
+            System.out.println(command);
+            Process p = Runtime.getRuntime().exec(command);
+            //*****************非常关键*******************//
+            p.waitFor();//如果去掉，下一步的查询将立即行完时执行
+            //******************************************//
+        }catch (Exception e){
+            System.out.println(e);
+    }}
 }

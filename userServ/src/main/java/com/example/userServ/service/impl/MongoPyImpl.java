@@ -31,6 +31,12 @@ public class MongoPyImpl implements pyMongoDao {
     }
 
     @Override
+    public void clean(String uid) {
+        Query query = new Query(Criteria.where("uid").is(uid));
+        mongoTemplateTest.findAllAndRemove(query, MongoPyDetail.class);
+    }
+
+    @Override
     public List<MongoPyDetail> findDemoByUId(String uid) {
         Query query = new Query(Criteria.where("uid").is(uid));
         System.out.println("the uid id:"+uid);

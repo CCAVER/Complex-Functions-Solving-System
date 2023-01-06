@@ -27,4 +27,5 @@ public interface AcServ {
     Sol getSol(String uid);
     List<Sol> getAllSol(String uid);
     void SOLDel(String uid);
+    void delUser(String uid);
 }

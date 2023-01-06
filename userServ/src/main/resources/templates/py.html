@@ -29,6 +29,7 @@
     </td></p>
         <p><a href="/logout">退出登录</a></p>
     </div>
+    <input type="button" onclick="delU()" value="删除当前账户" />
 </form>
 <table border="1" id="tab">
 </table>
@@ -106,6 +107,18 @@
     function godif(){
         document.getElementById("form").action="goDif";
         document.getElementById("form").submit();
+    }
+    function delU(){
+
+        var r=confirm("确认删除该账户?");
+        if (r==true)
+        {
+            document.getElementById("form").action="delCurUser";
+            document.getElementById("form").submit();
+        }
+        else
+        {
+        }
     }
 </SCRIPT>
 </body>

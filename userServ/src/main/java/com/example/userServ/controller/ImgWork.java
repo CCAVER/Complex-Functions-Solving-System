@@ -50,7 +50,7 @@ public class ImgWork {
         return new ResponseEntity<>(data, headers, HttpStatus.OK);
     }
 
-    @PostMapping (value = "/latex")
+    @PostMapping (value = "/latex0")
     public Map<String, byte[]> latex(String matha,HttpSession session) throws Exception{
         String uid="0";
         //uid="1";matha="sin(x)";

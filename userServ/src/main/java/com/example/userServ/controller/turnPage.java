@@ -2,6 +2,7 @@ package com.example.userServ.controller;
 
 import com.example.finalwork4.domain.pyInf;
 import com.example.userServ.dao.pyMongoDao;
+import com.example.userServ.domain.pyDetail;
 import com.example.userServ.service.AcServ;
 import com.example.userServ.service.MySecure;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class turnPage {
@@ -80,5 +84,11 @@ public class turnPage {
     @PostMapping("goDif")
     public String goDif(HttpServletRequest request,HttpSession session){
         return "dif";
+    }
+    @PostMapping("delCurUser")
+    public String mywork(HttpSession session) {
+        String uid = (String) session.getAttribute("uid");
+        as.delUser(uid);
+        return "logPage";
     }
 }
