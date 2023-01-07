@@ -34,6 +34,8 @@ public class RedisController {
     FeAc feAc;
     @Autowired
     AcServ acServ;
+    @Autowired
+    RabbitMQController rb;
 
 //    @RequestMapping("/rc")
 //    public String getIndex(){
@@ -53,7 +55,8 @@ public class RedisController {
 
         Map<String, byte[]> map = new HashMap<String, byte[]>();
 
-        feAc.golatex(uid, matha);
+        //feAc.golatex(uid, matha);
+        rb.golatex(uid,matha);
 
         byte[] finalUid = uid.getBytes(StandardCharsets.UTF_8);
         // 使用了lambda表达式

@@ -18,7 +18,7 @@ public interface FeAc {
     @RequestMapping(value = "pyReq/fix", method = RequestMethod.POST)
     String getfix(@RequestBody pyInf pi, @RequestParam(value = "rowid") int rowid) throws Exception;
 
-    @RequestMapping(value = "pyReq/lat", method = RequestMethod.POST)
+    @RequestMapping(value = "pyReq/lat0", method = RequestMethod.POST)
     String golatex(@RequestBody String uid, @RequestParam(value = "matha") String matha) throws Exception;
 
     @RequestMapping(value = "pyReq/diff", method = RequestMethod.POST)

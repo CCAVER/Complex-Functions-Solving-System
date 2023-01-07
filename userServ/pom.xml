@@ -28,6 +28,11 @@
 
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!--SpringCloud   @FeignClient调用其他注册子模块注解依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
