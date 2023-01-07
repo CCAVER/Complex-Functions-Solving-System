@@ -6,13 +6,13 @@
     <title>Title</title>
 </head>
 <body>
-[[${wrong}]]
 <form action="show" method="post" id="form">
 <msg name="uid" hidden="hidden">[[${uid}]]</msg>
     <div id="li">
         <input type="button" onclick="godif()" value="求导" />
         <input type="button" onclick="golim()" value="求极限" />
         <input type="button" onclick="gosol()" value="求解" />
+        <p>函数绘图：</p>
 <p>函数名:<input type="text" name="fname" value="1"/></p>
         <p>f(x)=<input type="text" name="mathm" value="cos(x)"/></p>
         <p>x > <input type="text" name="mini" value="-10"></p>
@@ -31,6 +31,9 @@
     </div>
     <input type="button" onclick="delU()" value="删除当前账户" />
 </form>
+权限管理：
+<table border="1" id="aut0"></table>
+历史记录:
 <table border="1" id="tab">
 </table>
 <style>
@@ -59,6 +62,7 @@
 <SCRIPT>
 
     window.onload=list();
+    window.onload=auth();
 
     function list() {
         $.ajax({
@@ -81,6 +85,33 @@
                         "        </form>\n" +
                         "    </td></tr>";
                     $('#tab').append(item);
+                }
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    function auth() {
+        $.ajax({
+            type : "POST",//请求方式
+            contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            url : "/getAuth",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "        <form action=\"enterAuth\" method=\"post\" id=\""+key+"\">\n" +
+                        "            你的权限:<input type='text' id='aut' name='aut' value=\""+data[key]+"\" readonly=\"readonly\"/>\n" +
+                        "            <input type=\"submit\" value=\"管理\" />\n" +
+                        "        </form>\n" +
+                        "    </td></tr>";
+                    $('#aut0').append(item);
                 }
             },
             error : function(e){//请求失败，包含具体的错误信息

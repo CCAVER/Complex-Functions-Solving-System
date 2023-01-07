@@ -3,6 +3,8 @@ package com.example.userServ.controller;
 import com.example.userServ.service.MySecure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -69,6 +71,27 @@ public class checker {
             }catch (Exception e){
                 System.out.println(e);
                 request.setAttribute("wrong","该用户已存在");
+                return "reg";}
+
+        }
+        return "reg";
+    }
+    @RequestMapping("changePas")
+    public String changePas(String password,HttpServletRequest request,HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username=authentication.getName();
+        if(username!=""&&username!=null&&password!=""&&password!=null){
+            String uid="";
+            try {
+                String[] tmp=mySecure.login(username);//获取UID
+                if(tmp[0].equals("true")){
+                    uid=tmp[1];
+                }else {throw new Exception("无法获取用户ID");}
+                mySecure.change(uid,password);
+                return "logPage";
+            }catch (Exception e){
+                System.out.println(e);
+                request.setAttribute("wrong","修改错误 你的密码是："+password);
                 return "reg";}
 
         }

@@ -4,10 +4,14 @@ import com.example.finalwork4.domain.Sol;
 import com.example.finalwork4.domain.lim;
 import com.example.finalwork4.domain.pyInf;
 import com.example.userServ.domain.diff;
+import com.example.userServ.domain.manageUser;
 import com.example.userServ.domain.pyDetail;
 import com.example.userServ.service.AcServ;
 import com.example.userServ.service.FeAc;
+import com.example.userServ.service.MySecure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,9 @@ public class dataControler {
 
     @Autowired
     FeAc feAc;
+
+    @Autowired
+    MySecure mySecure;
 
     @PostMapping(value = "/nowInf")
     public Map<String, String> nowInf(HttpSession session) {
@@ -198,4 +205,42 @@ public class dataControler {
     @PostMapping("soldel")
     public void solDel(String rowid) {
         as.SOLDel(rowid);}
+    @PostMapping("manageUser")
+    public Map<String, String[]> manageUser(HttpSession session) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, String[]> map = new HashMap<String, String[]>();
+        String curAut= (String) session.getAttribute("curAut");
+
+        String uid="";
+        String[] tmp=mySecure.login(authentication.getName());//获取UID
+        if(tmp[0].equals("true")){
+            uid=tmp[1];}else {throw new Exception("无法获取uid");}
+        List<manageUser> users = null;
+
+        int c=0;//计数器
+        for (Object auth : authentication.getAuthorities()) {
+            System.out.println("the auth in getter:" + auth.toString());
+            if(auth.toString().equals(curAut)){
+                if(auth.toString().equals("admin")){users=as.manageUser(uid,"admin|owner");}
+                if(auth.toString().equals("owner")){users=as.manageUser(uid,"owner");}
+
+            }
+        }
+        for (manageUser infs : users) {
+            map.put(String.valueOf(infs.getUid()),
+                    new String[]{
+                            infs.getUsername(),
+                            infs.getAuthority()
+                    });
+        }
+        System.out.println("the admin uid is:"+uid+" the user manage list is:"+users);
+        return map;
+    }
+    @PostMapping("DelUser")//管理员专用
+    public void mywork(String pid,HttpSession session) {
+        System.out.println(pid);
+        String uid = pid;
+        as.delUser(uid);
+        //return "logPage";
+    }
 }

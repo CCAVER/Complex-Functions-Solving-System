@@ -8,6 +8,7 @@ import com.example.userServ.dao.AccountDao;
 import com.example.userServ.dao.pyMongoDao;
 import com.example.userServ.domain.account;
 import com.example.userServ.domain.diff;
+import com.example.userServ.domain.manageUser;
 import com.example.userServ.domain.pyDetail;
 import com.example.userServ.service.AcServ;
 import com.sun.glass.ui.View;
@@ -158,4 +159,9 @@ public class AcServImpl implements AcServ {
         }catch (Exception e){
             System.out.println(e);
     }}
+
+    @Override
+    public List<manageUser> manageUser(String uid, String aut) {
+        return accountDao.manageUsers(uid,aut);
+    }
 }

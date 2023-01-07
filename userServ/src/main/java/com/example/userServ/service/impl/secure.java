@@ -43,6 +43,11 @@ public class secure implements MySecure {
     }
 
     @Override
+    public void change(String uid, String password) {
+        accountDao.changePas(encryptPassword(password),uid);
+    }
+
+    @Override
     public String add(String username, String password){
         String userId=accountDao.add2(username,encryptPassword(password));
         return userId;

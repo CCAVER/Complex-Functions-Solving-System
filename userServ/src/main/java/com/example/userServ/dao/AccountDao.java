@@ -84,4 +84,8 @@ public interface AccountDao {
     void SOLDel(@Param("id") String id);
     @Delete("delete from user where uid=${uid}")
     void userDel(@Param("uid") String uid);
+    @Update("update user set password=\"${pas}\" where uid=${uid}")
+    void changePas(@Param("pas") String pas,@Param("uid") String uid);
+    @Select("SELECT user.uid,user.username,ua.authority FROM `user`,ua,aa WHERE user.uid=aa.accid and aa.aid=ua.id and uid!=\"${uid}\" and uid not in (SELECT uid from user,ua,aa WHERE user.uid=aa.accid and aa.aid=ua.id and ua.authority REGEXP \"${aut}\")")
+    List<manageUser> manageUsers(@Param("uid") String uid,@Param("aut") String aut);
 }

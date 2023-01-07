@@ -30,29 +30,7 @@ public class pyServImpl implements pyServ {
         if (inf.getMatha()!=""||inf.getMatha()!=null){
             newId=accountDao.newrow();//新的一行已经建立，且获取到了ID
             pd.newInf(new MongoPyDetail(newId));
-            loadCommand="cmd.exe /c cd "
-                    + PATH //此处插入python文件的路径
-                    + " && python load.py"
-                    //+"-f D:\\学习系列\\J2E\\scripts\\";//利用python的命令行机制可以传入参数
-                    //+" --matha \"cos(x+8)*(9-2)\" "
-                    +" --matha \"("+inf.getMatha()
-                    +")\"  --uid "+inf.getUid();
-            System.out.println(loadCommand);
-            genCommand="cmd.exe /c cd "
-                    + PATH //此处插入python文件的路径
-                    + " && python picGen.py"
-                    //+"-f D:\\学习系列\\J2E\\scripts\\";//利用python的命令行机制可以传入参数
-                    //+" --matha \"cos(x+8)*(9-2)\" "
-                    +" --matha \"("+inf.getMatha()
-                    +")\" --rowid "+newId
-                    +" --fname "+inf.getFname()
-                    +" --uid "+inf.getUid()
-                    +" --mini "+inf.getMini()
-                    +" --maxi "+inf.getMaxi()
-                    +" --lent "+inf.getLent()
-                    +" --hei "+inf.getHei()
-                    +" --qal "+inf.getQuality();
-            System.out.println(genCommand);
+
             command= "cmd.exe /c cd "
                     + PATH //此处插入python文件的路径
                     + " && python temp.py"
@@ -62,11 +40,12 @@ public class pyServImpl implements pyServ {
                     +")\" --rowid "+newId
                     +" --fname "+inf.getFname()
                     +" --uid "+inf.getUid()
-                    +" --mini "+inf.getMini()
-                    +" --maxi "+inf.getMaxi()
-                    +" --lent "+inf.getLent()
+                    +" --mini \""+inf.getMini()
+                    +"\" --maxi \""+inf.getMaxi()
+                    +"\" --lent "+inf.getLent()
                     +" --hei "+inf.getHei()
                     +" --qal "+inf.getQuality();
+            System.out.println(command);
             //System.out.println(command);
             //python pyCharms1.py --matha 'cos(x)' --rowid 23 --fname 1 --uid 2 --mini '-10' --maxi '10' --lent 10 --hei 10 --qal 0.001
 
@@ -94,28 +73,7 @@ public class pyServImpl implements pyServ {
         String loadCommand="";
         String genCommand="";
         if (inf.getMatha()!=""||inf.getMatha()!=null){
-            pd.newInf(new MongoPyDetail(rowid));
-            loadCommand="cmd.exe /c cd "
-                    + PATH //此处插入python文件的路径
-                    + " && python load.py"
-                    //+"-f D:\\学习系列\\J2E\\scripts\\";//利用python的命令行机制可以传入参数
-                    //+" --matha \"cos(x+8)*(9-2)\" "
-                    +" --matha \"("+inf.getMatha()
-                    +")\"  --uid "+inf.getUid();
-            genCommand="cmd.exe /c cd "
-                    + PATH //此处插入python文件的路径
-                    + " && python picGen.py"
-                    //+"-f D:\\学习系列\\J2E\\scripts\\";//利用python的命令行机制可以传入参数
-                    //+" --matha \"cos(x+8)*(9-2)\" "
-                    +" --matha \"("+inf.getMatha()
-                    +")\" --rowid "+rowid
-                    +" --fname "+inf.getFname()
-                    +" --uid "+inf.getUid()
-                    +" --mini "+inf.getMini()
-                    +" --maxi "+inf.getMaxi()
-                    +" --lent "+inf.getLent()
-                    +" --hei "+inf.getHei()
-                    +" --qal "+inf.getQuality();
+            //pd.newInf(new MongoPyDetail(rowid));
             command= "cmd.exe /c cd "
                     + PATH //此处插入python文件的路径
                     + " && python temp.py"
@@ -125,9 +83,9 @@ public class pyServImpl implements pyServ {
                     +")\" --rowid "+rowid
                     +" --fname "+inf.getFname()
                     +" --uid "+inf.getUid()
-                    +" --mini "+inf.getMini()
-                    +" --maxi "+inf.getMaxi()
-                    +" --lent "+inf.getLent()
+                    +" --mini \""+inf.getMini()
+                    +"\" --maxi \""+inf.getMaxi()
+                    +"\" --lent "+inf.getLent()
                     +" --hei "+inf.getHei()
                     +" --qal "+inf.getQuality();
             System.out.println(command);

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+用户管理:
+<table border="1" id="tab">
+</table>
+<form action="py" method="post">
+    <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+    <p><input type="submit" value="返回"></p>
+</form>
+<SCRIPT>
+    window.onload=list();
+
+    function list() {
+        document.getElementById("tab").innerHTML="";
+        $.ajax({
+            type : "POST",//请求方式
+            contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            url : "/manageUser",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    item="<tr><td>\n" +
+                        "        <form action=\"DelUser\" method=\"post\" id=\""+key+"\">\n" +
+                        "            uid:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
+                        "            用户名:"+data[key][0]+" 权限"+data[key][1]+"\n" +
+                        "            <input type=\"button\" onclick=delU(\""+key+"\") value=\"删除该用户\" />\n"+
+                        "        </form>\n" +
+                        "    </td></tr>";
+                    $('#tab').append(item);
+                }
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    function delU(pid){
+        $.ajax({
+            type : "POST",//请求方式
+            contentType:"application/x-www-form-urlencoded",
+            data: {"pid":pid},
+            url : "/DelUser",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function() {//请求成功
+                list();
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</SCRIPT>
+</body>
+</html>

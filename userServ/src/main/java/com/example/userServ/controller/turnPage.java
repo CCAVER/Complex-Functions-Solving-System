@@ -6,6 +6,8 @@ import com.example.userServ.domain.pyDetail;
 import com.example.userServ.service.AcServ;
 import com.example.userServ.service.MySecure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,9 +57,15 @@ public class turnPage {
         try {
             username= SecurityContextHolder.getContext().getAuthentication().getName();
             System.out.println("username:"+username);
-            String[] tmp=mySecure.login(username);
+            String[] tmp=mySecure.login(username);//获取UID
             if(tmp[0].equals("true")){
-                session.setAttribute("uid",tmp[1]);//获取UID
+                session.setAttribute("uid",tmp[1]);
+                Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+                for(Object auth:authentication.getAuthorities()){
+                    System.out.println("the auth:"+auth.toString());
+                    session.setAttribute("auth",auth);
+                }
+
                 return "py";
             }else{
                 request.setAttribute("wrong","账户名或密码有误");
@@ -90,5 +98,15 @@ public class turnPage {
         String uid = (String) session.getAttribute("uid");
         as.delUser(uid);
         return "logPage";
+    }
+    @RequestMapping("enterAuth")
+    public String ea(HttpServletRequest request,HttpSession session){
+        String aut=request.getParameter("aut");
+        if(aut.equals("admin")||aut.equals("owner")){
+            session.setAttribute("curAut",aut);
+            return "admin";
+        }
+        return "user";
+
     }
 }

@@ -5,14 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-[[${wrong}]]
-<form action="doreg" method="post" id="lab">
+<form action="changePas" method="post" id="lab">
     <table id="tab">
         <tr align="center">
-            <td colspan="2">用户注册</td>
+            <td colspan="2">修改密码</td>
         </tr>
         <tr>
-            <td>用户名：</td><td><input type="text" name="username" /></td>
+            <td>旧密码：</td><td><input type="oldPass" name="oldPass" /></td>
         </tr>
         <tr>
             <td>密码：</td><td><input type="password" name="password" id="pas"/></td>
@@ -23,26 +22,18 @@
         </tr>
         <tr align="center">
             <td colspan="2">
-                <input type="button" value="注册" onclick=reg() >
+                <input type="button" value="修改" onclick=sub() >
                 <input type="reset" value="重填" />
             </td>
         </tr>
     </table>
 </form>
-<style>
-    #lab {
-        display: block;
-        background-color:beige;
-        position: center;
-    }
-    #tab{
-        display: block;
-        position:relative;
-        left: 40%;
-    }
-</style>
+<form action="py" method="post">
+    <msg name="uid" hidden="hidden">[[${uid}]]</msg>
+    <p><input type="submit" value="返回"></p>
+</form>
 <SCRIPT>
-    function reg(){
+    function sub(){
         if(document.getElementById("pas").value==document.getElementById("confirm").value){document.getElementById("lab").submit();}
         else {alert("密码不一致");}
     }

@@ -5,6 +5,7 @@ import com.example.finalwork4.domain.lim;
 import com.example.finalwork4.domain.pyInf;
 import com.example.userServ.domain.account;
 import com.example.userServ.domain.diff;
+import com.example.userServ.domain.manageUser;
 import com.example.userServ.domain.pyDetail;
 
 import java.sql.SQLException;
@@ -28,4 +29,5 @@ public interface AcServ {
     List<Sol> getAllSol(String uid);
     void SOLDel(String uid);
     void delUser(String uid);
+    List<manageUser> manageUser(String uid, String aut);
 }
