@@ -4,19 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="172d1575-f395-4d39-832a-9b799b121d31" name="Default Changelist" comment="added user manage">
-      <change afterPath="$PROJECT_DIR$/pyConn/src/main/java/com/example/pyConn/controller/MqControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/config/DirectRabbitConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/config/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/RabbitMQController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/RabbitMQService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/impl/RabbitMQServiceImpl.java" afterDir="false" />
+    <list default="true" id="172d1575-f395-4d39-832a-9b799b121d31" name="Default Changelist" comment="added RabbitMQ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyConn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pyConn/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userServ/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyConn/src/main/java/com/example/pyConn/controller/MqControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pyConn/src/main/java/com/example/pyConn/controller/MqControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/ImgWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/ImgWork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/RabbitMQController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/RabbitMQController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/RedisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/RedisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/FeAc.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/FeAc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userServ/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/dataControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/controller/dataControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/dao/AccountDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/AcServ.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/AcServ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/impl/AcServImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/java/com/example/userServ/service/impl/AcServImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/resources/templates/dif.html" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/resources/templates/dif.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/resources/templates/lim.html" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/resources/templates/lim.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userServ/src/main/resources/templates/sol.html" beforeDir="false" afterPath="$PROJECT_DIR$/userServ/src/main/resources/templates/sol.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,26 +86,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8 (2)&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/学习系列/毕业论文-定档/GraDes/userServ/src/main/java/com/example/userServ/config&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.56436783&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;18075781200f0a2a7501708ffc92c2e8&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "corretto-1.8 (2)",
+    "last_opened_file_path": "D:/学习系列/毕业论文-定档/GraDes/userServ/src/main/java/com/example/userServ/config",
+    "list.type.of.created.stylesheet": "CSS",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.56436783",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "spring.configuration.checksum": "cedd733d53b8ebab6758d90b9af0bdd6"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -280,7 +281,8 @@
       <workItem from="1673076332217" duration="1303000" />
       <workItem from="1673077669067" duration="2357000" />
       <workItem from="1673080937748" duration="267000" />
-      <workItem from="1673081224695" duration="6459000" />
+      <workItem from="1673081224695" duration="7085000" />
+      <workItem from="1673142013201" duration="12795000" />
     </task>
     <task id="LOCAL-00001" summary="python 程序">
       <created>1665977209051</created>
@@ -331,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673069844915</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added RabbitMQ">
+      <created>1673103098745</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673103098745</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +365,8 @@
     <MESSAGE value="Solving System" />
     <MESSAGE value="Solving System added Redis" />
     <MESSAGE value="added user manage" />
-    <option name="LAST_COMMIT_MESSAGE" value="added user manage" />
+    <MESSAGE value="added RabbitMQ" />
+    <option name="LAST_COMMIT_MESSAGE" value="added RabbitMQ" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

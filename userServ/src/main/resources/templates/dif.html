@@ -11,10 +11,11 @@
     <form action="tofix" method="post" id="form">
       <msg name="uid" hidden="hidden" id="uid0">[[${uid}]]</msg>
       <p>f(x)=<input type="text" id="mathm" name="mathm" value="" />
+        <input type="button" value="提交表达式" onclick="sublat()" />
         <input type="button" value="生成表达式" onclick="lat()" />
       </p>
       <p><td colspan="2">
-      <input type="button" value="求导" onclick="diff()"/>
+      <input type="button" value="生成导函数" onclick="gendiff()"/>
       <input type="reset" value="重填" />
     </td></p>
 
@@ -65,8 +66,28 @@
 
 </style>
 <SCRIPT>
+  function sublat(){
+    var matha0=document.getElementById("mathm").value;
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"matha":matha0},
+      url : "/subLatex",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function() {//请求成功
+        alert("提交成功，请点击’生成表达式‘查看")
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
   function lat(){
-    var uid0=document.getElementById("uid0").innerHTML;
     var matha0=document.getElementById("mathm").value;
     $.ajax({
       type : "POST",//请求方式
@@ -89,8 +110,7 @@
       }
     });
   }
-  function diff(){
-    var uid0=document.getElementById("uid0").innerHTML;
+  function subdiff(){
     var matha0=document.getElementById("mathm").value;
     $.ajax({
       type : "POST",//请求方式
@@ -98,6 +118,27 @@
       contentType:"application/x-www-form-urlencoded",
       data: {"matha":matha0},
       url : "/diff",//请求地址
+      //data : JSON.stringify(),//数据，json字符串
+      success : function() {
+        alert("函数提交成功，点击‘生成导函数’生成导函数")
+      },
+      error : function(e){//请求失败，包含
+
+        // 具体的错误信息
+        console.log(e.status);
+        console.log(e.responseText);
+        alert(e.status+e.responseText);
+      }
+    });
+  }
+  function gendiff(){
+    var matha0=document.getElementById("mathm").value;
+    $.ajax({
+      type : "POST",//请求方式
+      //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+      contentType:"application/x-www-form-urlencoded",
+      data: {"matha":matha0},
+      url : "/getDiff",//请求地址
       //data : JSON.stringify(),//数据，json字符串
       success : function(result) {//请求成功
         //console.log(result['1'][0]);标准格式

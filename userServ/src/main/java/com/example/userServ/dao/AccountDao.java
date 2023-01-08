@@ -88,4 +88,13 @@ public interface AccountDao {
     void changePas(@Param("pas") String pas,@Param("uid") String uid);
     @Select("SELECT user.uid,user.username,ua.authority FROM `user`,ua,aa WHERE user.uid=aa.accid and aa.aid=ua.id and uid!=\"${uid}\" and uid not in (SELECT uid from user,ua,aa WHERE user.uid=aa.accid and aa.aid=ua.id and ua.authority REGEXP \"${aut}\")")
     List<manageUser> manageUsers(@Param("uid") String uid,@Param("aut") String aut);
+    @Select("select authority from ua")
+    List<String> getAuts();
+    @Delete("delete from aa where accid=\"${uid}\" and aa.aid=(SELECT id from ua WHERE ua.authority=\"${aut}\")")
+    void revoke(@Param("uid") String uid,@Param("aut") String aut);
+    @Select("SELECT granter(${uid},\"${aut}\")")
+    int grant(@Param("uid") String uid,@Param("aut") String aut);
+    @Select("SELECT grantupdate(${uid},\"${aut}\",\"${oldaut}\")")
+    int grantUpdate(@Param("uid") String uid,@Param("aut") String aut,@Param("aut") String oldaut);
+
 }

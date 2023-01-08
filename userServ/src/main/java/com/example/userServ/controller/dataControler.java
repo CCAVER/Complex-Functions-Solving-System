@@ -61,7 +61,7 @@ public class dataControler {
         return map;
     }
 
-    @PostMapping("mywork0")
+    @PostMapping("mywork0")//已弃用
     public Map<String, String[]> mywork(HttpSession session) {
         String uid = (String) session.getAttribute("uid");
         List<pyDetail> pd = as.getDetail(uid);
@@ -218,20 +218,30 @@ public class dataControler {
         List<manageUser> users = null;
 
         int c=0;//计数器
-        for (Object auth : authentication.getAuthorities()) {
-            System.out.println("the auth in getter:" + auth.toString());
-            if(auth.toString().equals(curAut)){
-                if(auth.toString().equals("admin")){users=as.manageUser(uid,"admin|owner");}
-                if(auth.toString().equals("owner")){users=as.manageUser(uid,"owner");}
-
+//        for (Object auth : authentication.getAuthorities()) {
+//            System.out.println("the auth in getter:" + auth.toString());
+//            if(auth.toString().equals(curAut)){
+//                if(auth.toString().equals("admin")){users=as.manageUser(uid,"admin|owner");}//不能管理权限比自己大的角色以及自己权限；写在此处使得更高以及同等权限不会显示
+//                if(auth.toString().equals("owner")){users=as.manageUser(uid,"owner");}
+//
+//            }
+//        }
+        if(hasAut("owner")){
+            users=as.manageUser(uid,"owner");
+        }
+        else {
+            if(hasAut("admin")){users=as.manageUser(uid,"admin|owner");
             }
         }
+        int num=0;
         for (manageUser infs : users) {
-            map.put(String.valueOf(infs.getUid()),
+            map.put(String.valueOf(num),
                     new String[]{
                             infs.getUsername(),
-                            infs.getAuthority()
+                            infs.getAuthority(),
+                            infs.getUid()
                     });
+            num++;
         }
         System.out.println("the admin uid is:"+uid+" the user manage list is:"+users);
         return map;
@@ -243,4 +253,41 @@ public class dataControler {
         as.delUser(uid);
         //return "logPage";
     }
+    @PostMapping("getUa")//管理员专用
+    public Map<String, String> getUa(String pid,HttpSession session) {
+        String curAut= (String) session.getAttribute("curAut");
+        Map<String, String> map = new HashMap<String, String>();
+        int num=0;
+        for(String val:as.getUa()){
+            if(hasAut(val)){
+            map.put(String.valueOf(num),val);}
+            num++;
+        }
+        return map;
+    }
+    public Map<String, String> getAut() {//获取当前所有权限
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        int c=0;//计数器
+        Map<String, String> map = new HashMap<String, String>();
+        for (Object auth : authentication.getAuthorities()) {
+            map.put(String.valueOf(c),auth.toString());
+            c++;
+        }
+        return map;
+    }
+    public boolean hasAut(String aut){//判断是否具有该权限
+        for(Map.Entry<String, String> entry : getAut().entrySet()){
+            if(entry.getValue().equals(aut)){return true;}
+        }
+        return false;
+    }
+    @PostMapping("addUa")//管理员专用
+    public void addUa(String uid,String aut) {
+        as.grant(uid, aut);
+    }
+    @PostMapping("delUa")//管理员专用
+    public void delUa(String uid,String aut) {
+        as.revoke(uid, aut);
+    }
+
 }

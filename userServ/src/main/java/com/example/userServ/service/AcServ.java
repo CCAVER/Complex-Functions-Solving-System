@@ -30,4 +30,8 @@ public interface AcServ {
     void SOLDel(String uid);
     void delUser(String uid);
     List<manageUser> manageUser(String uid, String aut);
+    List<String> getUa();
+    void revoke(String uid, String aut);
+    void grant(String uid, String aut);
+    void grantUpdate(String uid, String aut,String oldAut);
 }

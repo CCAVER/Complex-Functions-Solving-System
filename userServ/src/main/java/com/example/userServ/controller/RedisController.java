@@ -56,7 +56,7 @@ public class RedisController {
         Map<String, byte[]> map = new HashMap<String, byte[]>();
 
         //feAc.golatex(uid, matha);
-        rb.golatex(uid,matha);
+        //rb.golatex(uid,matha);
 
         byte[] finalUid = uid.getBytes(StandardCharsets.UTF_8);
         // 使用了lambda表达式
@@ -79,5 +79,37 @@ public class RedisController {
         //System.out.println(data);
         //return new ResponseEntity<>(data, headers, HttpStatus.OK);
         return map;
+    }
+    @PostMapping(value = "/subLatex")
+    public void subLatex(String matha, HttpSession session) throws Exception{
+        String uid="0";
+        //uid="1";matha="sin(x)";
+        try{uid= (String) session.getAttribute("uid");}catch (Exception e){e.printStackTrace();}
+        if(matha==null){matha="sin(x)";}
+        System.out.println("the data in latex is: uid0:"+uid+" matha:"+matha);
+
+        //feAc.golatex(uid, matha);
+        rb.golatex(uid,matha);
+
+//        byte[] finalUid = uid.getBytes(StandardCharsets.UTF_8);
+//        // 使用了lambda表达式
+//        byte[] data = (byte[]) redisTemplate.execute((RedisConnection redisConnection) -> redisConnection.get(finalUid));
+//
+////        byte[] data=stringRedisTemplate.execute(new RedisCallback<byte[]>() {
+////            @Override
+////            public byte[] doInRedis(RedisConnection redisConnection) throws DataAccessException {
+////                // 传入byte[]类型的key，获取byte[]类型的value
+////                byte[] bytes = redisConnection.get(finalUid);
+////                return bytes;
+////            }
+////        });
+//
+//        //byte[] data=acServ.genLatex(uid);
+//
+//        final HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.IMAGE_PNG);
+//        map.put("img", data);
+//        //System.out.println(data);
+//        //return new ResponseEntity<>(data, headers, HttpStatus.OK);
     }
 }

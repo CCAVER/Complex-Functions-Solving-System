@@ -164,4 +164,25 @@ public class AcServImpl implements AcServ {
     public List<manageUser> manageUser(String uid, String aut) {
         return accountDao.manageUsers(uid,aut);
     }
+
+    @Override
+    public List<String> getUa() {
+        return accountDao.getAuts();
+    }
+
+    @Override
+    public void revoke(String uid, String aut) {
+        if(aut.equals("common")){return;}//common权限不可删除
+        try{accountDao.revoke(uid, aut);}catch (Exception e){e.printStackTrace();}
+    }
+
+    @Override
+    public void grant(String uid, String aut) {
+        try{accountDao.grant(uid, aut);}catch (Exception e){e.printStackTrace();}
+    }
+
+    @Override
+    public void grantUpdate(String uid, String aut, String oldAut) {
+        try{accountDao.grantUpdate(uid, aut,oldAut);}catch (Exception e){e.printStackTrace();}
+    }
 }

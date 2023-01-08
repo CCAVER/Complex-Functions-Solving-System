@@ -71,7 +71,7 @@ public class ImgWork {
         //return new ResponseEntity<>(data, headers, HttpStatus.OK);
         return map;
     }
-    @PostMapping (value = "/diff")
+    @PostMapping (value = "/diff0")
     public Map<String, byte[]> diff(String matha,HttpSession session) throws Exception{
         String uid="0";
         //uid="1";matha="sin(x)";

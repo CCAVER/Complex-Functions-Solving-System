@@ -10,7 +10,8 @@
         <form action="tofix" method="post" id="form">
             <msg name="uid" hidden="hidden">[[${uid}]]</msg>
             <p>f(x)=<input type="text" id="mathm" name="mathm" value="sin(x)" />
-            <input type="button" value="生成表达式" onclick="lat()" /></p>
+                <input type="button" value="提交表达式" onclick="sublat()" />
+                <input type="button" value="生成表达式" onclick="lat()" /></p>
             <p>极限<input type="text" id="lim" name="lim" value="0" /></p>
             <p>未知数<input type="text" id="sym" name="sym" value="x" /></p>
             <p><td colspan="2">
@@ -55,9 +56,29 @@
 
 </style>
 <SCRIPT>
+    function sublat(){
+        var matha0=document.getElementById("mathm").value;
+        $.ajax({
+            type : "POST",//请求方式
+            //contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            contentType:"application/x-www-form-urlencoded",
+            data: {"matha":matha0},
+            url : "/subLatex",//请求地址
+            //data : JSON.stringify(),//数据，json字符串
+            success : function() {//请求成功
+                alert("提交成功，请点击’生成表达式‘查看")
+            },
+            error : function(e){//请求失败，包含
+
+                // 具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+                alert(e.status+e.responseText);
+            }
+        });
+    }
     function lat(){
         var matha0=document.getElementById("mathm").value;
-
         $.ajax({
             type : "POST",//请求方式
             //contentType: "application/json;charset=UTF-8",//请求的媒体类型
@@ -69,7 +90,6 @@
                 //console.log(result['1'][0]);标准格式
                 var data = result;
                 $("#ImagePic").attr("src","data:image/png;base64,"+data["img"]);
-                list();
             },
             error : function(e){//请求失败，包含
 

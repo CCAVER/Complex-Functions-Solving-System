@@ -16,6 +16,31 @@
 </form>
 <SCRIPT>
     window.onload=list();
+    function fill(onsel,target){
+        document.getElementById(target).innerHTML="";
+        $.ajax({
+            type : "POST",//请求方式
+            contentType: "application/json;charset=UTF-8",//请求的媒体类型
+            url : "/getUa",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function(result) {//请求成功
+                //console.log(result['1'][0]);标准格式
+                var data = result;
+                for(var key in data){   //key    data[key]
+                    //console.log(key + "==" + data[key][0]);
+                    var item="";
+                    if(data[key]!=onsel){item="<option value=\""+data[key]+"\">"+data[key]+"</option>\n";}
+                    else {item="<option value=\""+data[key]+"\" selected>"+data[key]+"</option>\n";}
+                    document.getElementById(target).innerHTML+=item;
+                }
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
 
     function list() {
         document.getElementById("tab").innerHTML="";
@@ -32,13 +57,58 @@
                     //console.log(key + "==" + data[key][0]);
                     item="<tr><td>\n" +
                         "        <form action=\"DelUser\" method=\"post\" id=\""+key+"\">\n" +
-                        "            uid:<input type='text' id='pid' name='pid' value=\""+key+"\" readonly=\"readonly\"/>\n" +
-                        "            用户名:"+data[key][0]+" 权限"+data[key][1]+"\n" +
-                        "            <input type=\"button\" onclick=delU(\""+key+"\") value=\"删除该用户\" />\n"+
+                        "            uid:<input type='text' id='pid' name='pid' value=\""+data[key][2]+"\" readonly=\"readonly\"/>\n" +
+                        "            用户名:"+data[key][0]+" 权限："+//" 权限"+data[key][1]+"\n" +
+                        "<select name=\"A"+key+"\" id=\"A"+key+"\">\n" +
+                        "            <input type=\"button\" onclick=delU(\""+data[key][2]+"\") value=\"删除该用户\" />\n"+
+                        //"            <input type=\"button\" onclick=saveA(\"A"+key+"\","+key+") value=\"保存修改\" />\n"+
+                        "            <input type=\"button\" onclick=addA(\"A"+key+"\","+data[key][2]+") value=\"添加该权限\" />\n"+
+                        "            <input type=\"button\" onclick=delA(\"A"+key+"\","+data[key][2]+") value=\"删除该权限\" />\n"+
                         "        </form>\n" +
                         "    </td></tr>";
                     $('#tab').append(item);
+                    fill(data[key][1],("A"+key.toString()));
                 }
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    function saveA(target,uid){
+        alert(document.getElementById(target).value);
+        alert(uid);
+    }
+    function addA(target,uid){
+        var aut=document.getElementById(target).value;
+        $.ajax({
+            type : "POST",//请求方式
+            contentType:"application/x-www-form-urlencoded",
+            data: {"uid":uid,"aut":aut},
+            url : "/addUa",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function() {//请求成功
+                list();
+            },
+            error : function(e){//请求失败，包含具体的错误信息
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    function delA(target,uid){
+        var aut=document.getElementById(target).value;
+        $.ajax({
+            type : "POST",//请求方式
+            contentType:"application/x-www-form-urlencoded",
+            data: {"uid":uid,"aut":aut},
+            url : "/delUa",//请求地址
+            async: false,//同步传输
+            //data : JSON.stringify(),//数据，json字符串
+            success : function() {//请求成功
+                list();
             },
             error : function(e){//请求失败，包含具体的错误信息
                 console.log(e.status);
